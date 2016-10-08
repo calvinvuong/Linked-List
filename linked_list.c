@@ -1,4 +1,4 @@
-// Calvin Vuong
+//A Calvin Vuong
 // MKS65 pd10
 // Work 2
 // 10-07-2016
@@ -14,32 +14,65 @@ void print_list( struct node *n ) {
   printf("[");
   while ( (*n).next != NULL ) { // while there is still a next element
     printf( "%d,", (*n).i );
-    n++;
+    n = (*n).next;
   }
   printf("%d]\n", (*n).i);
   
 }
 
 
+// takes a pointer to the existing list and the data to be added
+// puts a new node with the new data at the beginning of the list
+// return a pointer to the beginning of the list
+struct node * insert_front(struct node *list, int data) {
+  struct node *new = (struct node *) malloc(sizeof(struct node));;
+  (*new).i = data;
+  (*new).next = list;
+
+  return new;
+
+}
+
+
 void test_print_list() {
+  struct node n3;
+  struct node n2;
+  struct node n1;
 
-  struct node e3;
-  struct node e2;
-  struct node e1;
+  n3.i = 4;
+  n3.next = NULL;
+  n2.i = 2;
+  n2.next = &n3;
+  n1.i = 1;
+  n1.next = &n2;
 
-  e3.i = 4;
-  e3.next = NULL;
-  e2.i = 2;
-  e2.next = &e3;
-  e1.i = 1;
-  e1.next = &e2;
-
-  print_list(&e1);
+  print_list(&n1);
   
+}
+
+void test_insert_front() {
+  struct node n3;
+  struct node n2;
+  struct node n1;
+
+  n3.i = 27;
+  n3.next = NULL;
+  n2.i = 9;
+  n2.next = &n3;
+  n1.i = 3;
+  n1.next = &n2;
+
+  printf("List before insertion: ");
+  print_list(&n1);
+
+  printf("List after inserting 1 at front: ");
+  print_list( insert_front(&n1, 1) );
+
 }
 
 int main() {
   test_print_list();
+  test_insert_front();
   
   return 0;
 }
