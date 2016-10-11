@@ -56,9 +56,10 @@ void test_print_list() {
   n2.next = &n3;
   n1.i = 1;
   n1.next = &n2;
-
-  print_list(&n1);
   
+  printf("Testing print_list(): \n");
+  print_list(&n1);
+  printf("\n");
 }
 
 void test_insert_front() {
@@ -72,12 +73,13 @@ void test_insert_front() {
   (*n2).next = n3;
   (*n1).i = 3;
   (*n1).next = n2;
-
+  printf("Testing insert_front(): \n");
   printf("List before insertion: ");
   print_list(n1);
 
   printf("List after inserting 1 at front: ");
   print_list( insert_front(n1, 1) );
+  printf("\n");
 }
 
 void test_free_list() {
@@ -92,6 +94,7 @@ void test_free_list() {
   (*n1).i = 3;
   (*n1).next = n2;
 
+  printf("NOTE: It is impossible to definitively test if free_list() works, as freed memory is not cleared and any pointers to freed memory still exist and work.\n");
 }
 
 int main() {
